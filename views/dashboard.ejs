@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 8px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .images-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-gap: 20px;
+    }
+    .image {
+      width: 100%;
+      border-radius: 5px;
+    }
+    .no-images {
+      text-align: center;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Dashboard</h1>
+    
+    <!-- Search form -->
+    <form action="/dashboard" method="GET">
+      <input type="text" name="q" placeholder="Search for images">
+      <button type="submit">Search</button>
+    </form>
+
+    <!-- Display images -->
+    <div class="images-container">
+      <% if (images && images.length) { %>
+        <% images.forEach(image => { %>
+          <img class="image" src="<%= image.urls.small %>" alt="<%= image.alt_description %>">
+        <% }); %>
+      <% } else { %>
+        <p class="no-images">No images found.</p>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>
